@@ -63,7 +63,10 @@ public class Scanner {
             case '\n':
                 line++;
                 break;
-                
+            case '"':
+                string();
+                break;
+
             default:
                 Lox.error(line, "Unexpected charachter");
                 break;
@@ -94,5 +97,19 @@ public class Scanner {
     private char peek() {
         if (isAtEnd()) return '\0';
         return source.charAt(current);
+    }
+
+    private void string() {
+        while (peek() != '"' && !isAtEnd()) {
+            if (peek() == '\n') line++;
+            advance();
+        }
+        if (isAtEnd()) {
+            Lox.error(line, "Unterminated string");
+        }
+        advance();
+
+        String value = source.substring(start + 1, current - 1);
+        addToken(TokenType.STRING, value);
     }
 }
