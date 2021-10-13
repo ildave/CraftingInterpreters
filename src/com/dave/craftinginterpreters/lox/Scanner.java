@@ -68,7 +68,7 @@ public class Scanner {
                 break;
 
             default:
-                if (isDigit()) {
+                if (isDigit(c)) {
                     number();
                 }
                 else {
