@@ -178,6 +178,6 @@ public class Scanner {
         String text = source.substring(start, current);
         TokenType type = keywords.get(text);
         if (type == null) type = TokenType.IDENTIFIER;
-        addToken(TokenType.type);
+        addToken(type);
     }
 }
