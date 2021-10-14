@@ -53,6 +53,7 @@ public class Scanner {
 
     private void scanToken() {
         char c = advance();
+        Lox.log("Current char: " + c);
         switch (c) {
             case '(': addToken(TokenType.LEFT_PAREN); break;
             case ')': addToken(TokenType.RIGHT_PAREN); break;
@@ -65,13 +66,13 @@ public class Scanner {
             case ';': addToken(TokenType.SEMICOLON); break;
             case '*': addToken(TokenType.STAR); break;
             case '!':
-                addToken(match('=') ? TokenType.BANG_EQUAL : TokenType.BANG);
+                addToken(match('=') ? TokenType.BANG_EQUAL : TokenType.BANG); break;
             case '=':
-                addToken(match('=') ? TokenType.EQUAL_EQUAL : TokenType.EQUAL);
+                addToken(match('=') ? TokenType.EQUAL_EQUAL : TokenType.EQUAL); break;
             case '<':
-                addToken(match('=') ? TokenType.LESS_EQUAL : TokenType.LESS);
+                addToken(match('=') ? TokenType.LESS_EQUAL : TokenType.LESS); break;
             case '>':
-                addToken(match('=') ? TokenType.GREATER_EQUAL : TokenType.GREATER);
+                addToken(match('=') ? TokenType.GREATER_EQUAL : TokenType.GREATER); break;
             case '/':
                 if (match('/')) {
                     while (peek() != '\n' && !isAtEnd()) advance();
@@ -83,8 +84,10 @@ public class Scanner {
             case ' ':
             case '\r':
             case '\t':
+                Lox.log("Skip empty space");
                 break;
             case '\n':
+                Lox.log("Skip new line");
                 line++;
                 break;
             case '"':
@@ -113,6 +116,7 @@ public class Scanner {
     }
 
     private void addToken(TokenType type, Object literal) {
+        Lox.log("Add token " + type);
         String text = source.substring(start, current);
         tokens.add(new Token(type, text, literal, line));
     }
