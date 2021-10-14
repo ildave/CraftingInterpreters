@@ -11,6 +11,7 @@ import java.util.List;
 public class Lox {
 
     static boolean hadError = false;
+    static boolean debug = true;
 
     public static void main(String[] args) throws IOException {
         if (args.length > 1) {
@@ -47,7 +48,7 @@ public class Lox {
         List<Token> tokens = scanner.scanTokens();
 
         for (Token token : tokens) {
-            System.out.println(token);
+            System.out.println("Token: " + token);
         }
 
         if (hadError) {
@@ -64,6 +65,12 @@ public class Lox {
             "[line " + line + "] Error " + where + ": " + message
         );
         hadError = true;
+    }
+
+    static void log(String message) {
+        if (debug) {
+            System.err.println(message);
+        }
     }
 
     
