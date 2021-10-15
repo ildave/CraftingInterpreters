@@ -21,10 +21,12 @@ class Parser {
     }
 
     private Expr expression() {
+        Lox.log("expression");
         return equality();
     }
 
     private Expr equality() {
+        Lox.log("equality");
         Expr expr = comparison();
         while (match(TokenType.BANG_EQUAL, TokenType.EQUAL_EQUAL)) {
             Token operator = previous();
@@ -35,6 +37,7 @@ class Parser {
     }
 
     private Expr comparison() {
+        Lox.log("comparison");
         Expr expr = term();
          while(match(TokenType.GREATER, TokenType.GREATER_EQUAL, TokenType.LESS, TokenType.LESS_EQUAL)) {
              Token operator = previous();
@@ -45,6 +48,7 @@ class Parser {
     }
 
     private Expr term() {
+        Lox.log("term");
         Expr expr = factor();
         while(match(TokenType.MINUS, TokenType.PLUS)) {
             Token operator = previous();
@@ -55,6 +59,7 @@ class Parser {
     }
 
     private Expr factor() {
+        Lox.log("factor");
         Expr expr = unary();
         while(match(TokenType.SLASH, TokenType.STAR)) {
             Token operator = previous();
@@ -65,6 +70,7 @@ class Parser {
     }
 
     private Expr unary() {
+        Lox.log("unary");
         if (match(TokenType.BANG, TokenType.MINUS)) {
             Token operator = previous();
             Expr right = unary();
@@ -74,6 +80,7 @@ class Parser {
     }
 
     private Expr primary() {
+        Lox.log("primary");
         if (match(TokenType.FALSE)) return new Expr.Literal(false);
         if (match(TokenType.TRUE)) return new Expr.Literal(true);
         if (match(TokenType.NIL)) return new Expr.Literal(null);
@@ -86,7 +93,7 @@ class Parser {
             consume(TokenType.RIGHT_PAREN, "Expect ')' after expression");
             return new Expr.Grouping(expr);
         }
-        throw error(peek(), "Expect expression");
+        throw error(peek(), "Expect expression - parse error");
     }
 
     private boolean match(TokenType ... types) {
