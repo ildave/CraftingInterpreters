@@ -25,7 +25,7 @@ class Parser {
 
     private Expr comparison() {
         Expr expr = term();
-         while(match(TokenType.GREATER, TokenType.GREATER_EQUAL, TokenType.LESS, TokenType.LESS_EQUAL))) {
+         while(match(TokenType.GREATER, TokenType.GREATER_EQUAL, TokenType.LESS, TokenType.LESS_EQUAL)) {
              Token operator = previous();
              Expr right = term();
              expr = new Expr.Binary(expr, operator, right);
@@ -38,7 +38,7 @@ class Parser {
         while(match(TokenType.MINUS, TokenType.PLUS)) {
             Token operator = previous();
             Expr right = factor();
-            expr = new Expr.Binary(expr, operator, right)
+            expr = new Expr.Binary(expr, operator, right);
         }
         return expr;
     }
@@ -78,7 +78,7 @@ class Parser {
         }
     }
 
-    private boolean match(TokenType ... tpyes) {
+    private boolean match(TokenType ... types) {
         for (TokenType type : types) {
             if (check(type)) {
                 advance();
@@ -99,7 +99,7 @@ class Parser {
     }
 
     private boolean isAtEnd() {
-        return peek.type == TokenType.EOF;
+        return peek().type == TokenType.EOF;
     }
 
     private Token peek() {
