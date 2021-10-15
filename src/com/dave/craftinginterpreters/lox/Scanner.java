@@ -84,10 +84,10 @@ public class Scanner {
             case ' ':
             case '\r':
             case '\t':
-                Lox.log("Skip empty space");
+                //Lox.log("Skip empty space");
                 break;
             case '\n':
-                Lox.log("Skip new line");
+                //Lox.log("Skip new line");
                 line++;
                 break;
             case '"':
@@ -141,6 +141,7 @@ public class Scanner {
         }
         if (isAtEnd()) {
             Lox.error(line, "Unterminated string");
+            return;
         }
         advance();
 
