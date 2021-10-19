@@ -32,7 +32,7 @@ class Interpreter implements Expr.Visitor<Object> {
         Object right = evaluate(expr.right);
 
         switch (expr.operator.type) {
-            case GREATER
+            case GREATER:
                 return (double)left > (double)right;
             case GREATER_EQUAL:
                 return (double)left >= (double)right;
