@@ -56,11 +56,11 @@ public class Lox {
         }
 
         Parser parser = new Parser(tokens);
-        Expr expression = parser.parse();
+        List<Stmt> statements = parser.parse();
 
         if (hadError) return;
         
-        interpreter.interpret(expression);
+        interpreter.interpret(statements);
 
         if (hadError) {
             System.exit(65);
