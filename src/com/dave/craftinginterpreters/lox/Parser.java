@@ -22,8 +22,7 @@ class Parser {
     }
 
     private Expr expression() {
-        Lox.log("expression");
-        return equality();
+        return assignment();
     }
 
     private Stmt declaration() {
@@ -62,6 +61,20 @@ class Parser {
         Expr expr = expression();
         consume(TokenType.SEMICOLON, "Expet ';' after expression");
         return new Stmt.Expression(expr);
+    }
+
+    private Expr assignment() {
+        Expr expr = equality();
+        if (match(TokenType.EQUAL)) {
+            Token equals = previous();
+            Expr value = assignment();
+        if (expr instanceof Expr.Variable) {
+            Token name = ((Expr.Variable)expr).name;
+            return new Expr.Assign(name, value);
+            }
+        error(equals, "Invalid assignment target");
+        }
+        return expr;
     }
 
     private Expr equality() {
