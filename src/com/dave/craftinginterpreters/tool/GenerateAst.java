@@ -8,13 +8,17 @@ import java.util.List;
 public class GenerateAst {
 
     public static void main(String[] args) throws IOException {
+        String outputDir;
         if (args.length != 1) {
-            System.err.println("Usage: generate_ast <output dir>");
-            System.exit(64);
+            System.out.println("No output dir defined, using '.'");
+            outputDir = ".";
         }
-        String outputDir = args[0];
-
+        else {
+            outputDir = args[0];
+        }
+        
         defineAst(outputDir, "Expr", Arrays.asList(
+            "Assign     : Tonek name, Expr value",
             "Binary     : Expr left, Token operator, Expr right",
             "Grouping   : Expr expression",
             "Literal    : Object value",
