@@ -12,7 +12,7 @@ abstract class Expr {
         R visitUnaryExpr(Unary expr);
     }
     static class Assign extends Expr{
-        Assign(Tonek name, Expr value) {
+        Assign(Token name, Expr value) {
             this.name = name;
             this.value = value;
         }
@@ -22,7 +22,7 @@ abstract class Expr {
         return visitor.visitAssignExpr(this);
     }
 
-    final Tonek name;
+    final Token name;
     final Expr value;
     }
     static class Binary extends Expr{

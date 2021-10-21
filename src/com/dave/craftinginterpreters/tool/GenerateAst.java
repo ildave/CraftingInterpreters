@@ -18,7 +18,7 @@ public class GenerateAst {
         }
         
         defineAst(outputDir, "Expr", Arrays.asList(
-            "Assign     : Tonek name, Expr value",
+            "Assign     : Token name, Expr value",
             "Binary     : Expr left, Token operator, Expr right",
             "Grouping   : Expr expression",
             "Literal    : Object value",
