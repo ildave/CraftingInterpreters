@@ -35,8 +35,8 @@ abstract class Stmt {
     final Expr expression;
     }
     static class If extends Stmt{
-        If(Expr Condition, Stmt thenBranch, Stmt elseBranch) {
-            this.Condition = Condition;
+        If(Expr condition, Stmt thenBranch, Stmt elseBranch) {
+            this.condition = condition;
             this.thenBranch = thenBranch;
             this.elseBranch = elseBranch;
         }
@@ -46,7 +46,7 @@ abstract class Stmt {
         return visitor.visitIfStmt(this);
     }
 
-    final Expr Condition;
+    final Expr condition;
     final Stmt thenBranch;
     final Stmt elseBranch;
     }
