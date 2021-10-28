@@ -1,6 +1,7 @@
 package com.dave.craftinginterpreters.lox;
 
 import com.dave.craftinginterpreters.lox.Expr.Assign;
+import com.dave.craftinginterpreters.lox.Expr.Logical;
 import com.dave.craftinginterpreters.lox.Expr.Variable;
 
 class AstPrinter  implements Expr.Visitor<String> {
@@ -64,6 +65,12 @@ class AstPrinter  implements Expr.Visitor<String> {
 
     @Override
     public String visitAssignExpr(Assign expr) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public String visitLogicalExpr(Logical expr) {
         // TODO Auto-generated method stub
         return null;
     }
